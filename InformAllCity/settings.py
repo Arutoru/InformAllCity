@@ -33,7 +33,7 @@ GEOS_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_LINUX/geos/pygeos/lib.cpyth
 SECRET_KEY = "django-insecure-cz@muq00w@-mfl@a_h@s#769)wt20d@3#5d_n#3nd5#irsze2n"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
