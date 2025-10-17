@@ -48,10 +48,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
+    "move.apps.MoveConfig"
     "bootstrap4",
     "leaflet",
     "djgeojson",
-    "move",
 ]
 
 MIDDLEWARE = [
@@ -143,8 +143,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-# STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 STATIC_URL = '/static/'
 STATIC_ROOT = str(os.path.join(BASE_DIR, "staticfiles"))
