@@ -33,7 +33,7 @@ GEOS_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_LINUX/geos/pygeos/lib.cpyth
 SECRET_KEY = "django-insecure-cz@muq00w@-mfl@a_h@s#769)wt20d@3#5d_n#3nd5#irsze2n"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.gis",
     "move.apps.MoveConfig",
+    'accounts.apps.AccountsConfig',
     "bootstrap4",
     "leaflet",
     "djgeojson",
@@ -151,6 +152,7 @@ STATIC_ROOT = str(os.path.join(BASE_DIR, "staticfiles"))
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+LOGIN_REDIRECT_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

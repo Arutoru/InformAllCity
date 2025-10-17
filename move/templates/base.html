@@ -27,18 +27,61 @@
   </head>
   <body>
   <div>
-    {% leaflet_map "detailmap" callback="window.map_init"%}
+    {% block content %}
+    {% endblock %}
   </div>
 </body>
-  {% block javascript %}
-  {{ block.super }}
-
-  {% endblock %}
 
   <!-- Latest compiled and minified jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    // On définit une boucle qui parcourera une liste contenant les fichiers json
+    var dataurl = '{% url "point_data" %}' ;
+    window.addEventListener("map:init", function (event) {
+      //Définition des variables globales
+      var map = event.detail.map;
+      var lc = map.layerscontrol;
+      var control;
+      var content;
+      // Téléchargement des fichiers GEOJSON avec Ajax
+      var file = fetch(dataurl).then(function(resp) {
+          return resp.json();
+        });
+      // Définition de la symbologie pour les marqueurs
+      function markers(feature, latlng){
+        var props = feature.properties;
+        var geoOptions = {
+          color:"orange",
+          radius: 4,
+          fillOpacity: 0.8
+        };
+        return L.circleMarker(latlng, geoOptions);
+      };
+      // Définiton des popups et affichage des couches
+      file.then(function(data) {lc.addOverlay(
+        L.geoJson(data, {pointToLayer : markers,
+          onEachFeature: function onEachFeature(feature, layer) {
+            var props = feature.properties;
+            control = 'Point de vente';
+            content = ` <h4>Point de vente</h4>
+                        <h6><b>Nom:</b> ${props.p102}</h6>
+                        <h6><b>Tel:</b> ${props.p103}</h6>
+                        <h6><b>Genre:</b> ${props.p8}</h6>
+                        <h6><b>Age:</b> ${props.p16}</h6>
+                        <h6><b>Nationalité:</b> ${props.p17}</h6>
+                        <h6><b>Biens/Services:</b> ${props.p15}</h6>
+                        <h6><b>Activité Principale?:</b> ${props.p26}</h6>
+                        <h6><b>Fixe ou Mobile:</b> ${props.p10}</h6>
+                        <div class="d-flex justify-content-center">
+                          <a class="detail btn btn-primary mx-1" href="https://informallcity-production.up.railway.app/admin/move/point_vente/${props.p1}/change/">Détails <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>`;
+            layer.bindPopup(content);
+        }}).addTo(map),control);
+      });
+    });
+  </script>
 
 </html>
