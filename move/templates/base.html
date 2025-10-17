@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap4 %}
+{% load leaflet_tags %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <!-- Load static css -->
+    <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+    <!-- Load Esri Leaflet from CDN -->
+    <script
+      src="https://unpkg.com/esri-leaflet@3.0.14/dist/esri-leaflet.js"
+      integrity="sha512-3fIGJwUOdCnUZPv8vIk8CMi3baMSaQp/zozG6kRGM4f5NvSXKBRNf4ufcdP94Nii510v1tfsXR1HScEg7WU3Pg=="
+      crossorigin=""></script>
+    <!-- Leaflet pour label -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-textpath@1.2.0/leaflet.textpath.min.js"></script>
+    <!-- Latest compiled Bootsrtap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Alternative to Bootstrap 3 Glyphicons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <title>MOVE</title>
+  </head>
+  <body>
+  <div>
+    {% leaflet_map "detailmap" callback="window.map_init"%}
+  </div>
+</body>
+  {% block javascript %}
+  {{ block.super }}
+
+  {% endblock %}
+
+  <!-- Latest compiled and minified jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</html>

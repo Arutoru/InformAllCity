@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+  {% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript">
+    // On définit une boucle qui parcourera une liste contenant les fichiers json
+    var dataurl = '{% url "point_data" %}' ;
+    window.addEventListener("map:init", function (event) {
+      //Définition des variables globales
+      var map = event.detail.map;
+      var lc = map.layerscontrol;
+      var control;
+      var content;
+      // Téléchargement des fichiers GEOJSON avec Ajax
+      var file = fetch(dataurl).then(function(resp) {
+          return resp.json();
+        });
+      // Définition de la symbologie pour les marqueurs
+      function markers(feature, latlng){
+        var props = feature.properties;
+        var geoOptions = {
+          color:"orange",
+          radius: 4,
+          fillOpacity: 0.8
+        };
+        return L.circleMarker(latlng, geoOptions);
+      };
+      // Définiton des popups et affichage des couches
+      file.then(function(data) {lc.addOverlay(
+        L.geoJson(data, {pointToLayer : markers,
+          onEachFeature: function onEachFeature(feature, layer) {
+            var props = feature.properties;
+            control = 'Point de vente';
+            content = ` <h6><b>Nom:</b> ${props.p102}</h6>
+                        <h6><b>Tel:</b> ${props.p103}</h6>
+                        <h6><b>Genre:</b> ${props.p8}</h6>
+                        <h6><b>Age:</b> ${props.p16}</h6>
+                        <h6><b>Nationalité:</b> ${props.p17}</h6>
+                        <h6><b>Biens/Services:</b> ${props.p15}</h6>
+                        <h6><b>Activité Principale?:</b> ${props.p26}</h6>
+                        <h6><b>Fixe ou Mobile:</b> ${props.p10}</h6>
+                        <div class="d-flex justify-content-center">
+                          <a class="detail btn btn-primary mx-1" href="http://127.0.0.1:8000/admin/move/point_vente/${props.p1}/change/" target="_blank">Détails <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>`;
+            layer.bindPopup(content);
+        }}).addTo(map),control);
+      });
+    });
+  </script>
+  {% endblock %}
