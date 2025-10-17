@@ -31,6 +31,7 @@ GEOS_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_LINUX/geos/pygeos/lib.cpyth
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-cz@muq00w@-mfl@a_h@s#769)wt20d@3#5d_n#3nd5#irsze2n"
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -71,7 +72,7 @@ ROOT_URLCONF = "InformAllCity.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [TEMPLATE_DIR],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
