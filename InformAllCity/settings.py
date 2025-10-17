@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
-    "move.apps.MoveConfig"
+    "move.apps.MoveConfig",
     "bootstrap4",
     "leaflet",
     "djgeojson",
