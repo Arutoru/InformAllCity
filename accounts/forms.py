@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.forms import AuthenticationForm
+from django import forms
+from django.forms.widgets import PasswordInput
 
 class UserCreateForm(UserCreationForm):
     class Meta:
@@ -11,3 +13,8 @@ class UserCreateForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields["username"].label = "Display name"
         self.fields["email"].label = "Email address"
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(label="Utilisateur")
+    password = forms.CharField(label="Mot de passe", widget=PasswordInput)
