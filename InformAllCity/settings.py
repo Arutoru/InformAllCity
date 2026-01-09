@@ -32,9 +32,9 @@ GEOS_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_LINUX/geos/pygeos/lib.cpyth
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-cz@muq00w@-mfl@a_h@s#769)wt20d@3#5d_n#3nd5#irsze2n"
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-CSP_FRAME_ANCESTORS = ("self", "https://test.informall.numias-sarl.com/map.html")
+CSP_FRAME_ANCESTORS = ("'self'", "https://test.informall.numias-sarl.com/map.html")
 CSP_IMG_SRC = ("'self'", 'https://test.informall.numias-sarl.com/map.html', 'data:')
-CRS_TRUSTED_ORIGINS =['https://informallcity-production.up.railway.app/','https://test.informall.numias-sarl.com/map.html']
+CRS_TRUSTED_ORIGINS =['https://informallcity-production.up.railway.app/', 'https://test.informall.numias-sarl.com/map.html']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -61,14 +61,12 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "csp.middleware.CSPMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 ROOT_URLCONF = "InformAllCity.urls"
