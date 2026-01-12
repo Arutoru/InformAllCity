@@ -57,6 +57,10 @@ INSTALLED_APPS = [
     "bootstrap4",
     "leaflet",
     "djgeojson",
+    'rest_framework',
+    'rest_framework_gis',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
