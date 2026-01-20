@@ -114,7 +114,7 @@
               var props = feature.properties;
               control = '<h7>Point de vente <h7><img width="20" src="{% static "vendeur.png" %}"/>';
               content = ` <h4>Point de vente</h4>
-                          <h6><b>N°:</b> ${props.p102}</h6>
+                          <h6><b>N°:</b> ${props.p1}</h6>
                           <h6><b>Nom:</b> ${props.p102}</h6>
                           <h6><b>Tel:</b> ${props.p103}</h6>
                           <h6><b>Genre:</b> ${props.p8}</h6>
@@ -126,8 +126,8 @@
                           {% if user.is_authenticated %}
                           <div class="d-flex justify-content-center">
                             <a class="detail btn btn-primary mx-1" href="https://informallcity-production.up.railway.app/admin/move/point_vente/${props.p1}/change/">Détails <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                          </div>
-                          {% endif %};`
+                          </div>;
+                          {% endif %}`
               layer.bindPopup(content);
         }});
         // Ajouter au cluster
