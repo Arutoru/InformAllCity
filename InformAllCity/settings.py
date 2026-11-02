@@ -170,7 +170,7 @@ LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (11.519, 3.866), # lat,long
     'DEFAULT_ZOOM': 17,
     'TILES': [('Satellite','https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' ,
-         {'attribution': '&copy; Big eye'}), ('Streets', 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {'attribution': '&copy; Contributors'}),
+         {'attribution': '&copy; Big eye'}), ('Streets', 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {'attribution': '&copy; Contributors'}),
 ],
     # 'OVERLAYS': [('Cadastral', 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {'attribution': '&copy;IGN'})],
     'ATTRIBUTION_PREFIX': 'Powered by django-leaflet',
