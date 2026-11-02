@@ -19,11 +19,11 @@ STATIC_DIR = str(os.path.join(BASE_DIR, 'move/static'))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'move/templates')
 
 # LINUX
-GDAL_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_LINUX/gdal/osgeo/lib/libgdal.so"))
-GEOS_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_LINUX/geos/pygeos/lib.cpython-39-x86_64-linux-gnu.so"))
+# GDAL_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_LINUX/gdal/osgeo/lib/libgdal.so"))
+# GEOS_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_LINUX/geos/pygeos/lib.cpython-39-x86_64-linux-gnu.so"))
 # WINDOWS
-# GDAL_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_WINDOWS/gdal304"))
-# GEOS_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_WINDOWS/geos_c"))
+GDAL_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_WINDOWS/gdal304"))
+GEOS_LIBRARY_PATH = str(os.path.join(BASE_DIR, "GDAL_WINDOWS/geos_c"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -111,11 +111,11 @@ WSGI_APPLICATION = "InformAllCity.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'HOST': 'metro.proxy.rlwy.net',
+        'HOST': 'reseau.proxy.rlwy.net',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'F1EbabDGf2EbbBeA3f55C43Fga53F1AA',
-        'PORT': '52837'
+        'PASSWORD': 'g23De3Fd1eCcF1AaG5D2dEBAA4ebgA5C',
+        'PORT': '10385'
     }
 }
 
@@ -165,13 +165,13 @@ LOGIN_REDIRECT_URL = '/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 LEAFLET_CONFIG = {
-    # Retirer 0.005 pour les 2 premières et ajouter 0.005 pour les 2 dernières
-    'SPATIAL_EXTENT': (11.514, 3.860, 11.524, 3.872), # 4 corners
-    'DEFAULT_CENTER': (11.519, 3.865), # lat,long
+    # Retirer 0.004 pour les 2 premières et ajouter 0.0025 pour les 2 dernières
+    'SPATIAL_EXTENT': (11.515, 3.8622, 11.523, 3.872), # 4 corners
+    'DEFAULT_CENTER': (11.519, 3.866), # lat,long
     'DEFAULT_ZOOM': 17,
-    'TILES': [('Streets', 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {'attribution': '&copy; Contributors'}),
-    ('Satellite','https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' ,
-     {'attribution': '&copy; Big eye'})],
+    'TILES': [('Satellite','https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' ,
+         {'attribution': '&copy; Big eye'}), ('Streets', 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', {'attribution': '&copy; Contributors'}),
+],
     # 'OVERLAYS': [('Cadastral', 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {'attribution': '&copy;IGN'})],
     'ATTRIBUTION_PREFIX': 'Powered by django-leaflet',
 }

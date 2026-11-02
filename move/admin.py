@@ -1,6 +1,9 @@
 from django.contrib.gis import admin
 from .models import Point_vente
 from leaflet.admin import LeafletGeoAdmin
+from django.contrib import admin
+
+admin.site.site_header = "Move Administration"
 
 # Register your models here.
 class Point_venteAdmin(LeafletGeoAdmin):
